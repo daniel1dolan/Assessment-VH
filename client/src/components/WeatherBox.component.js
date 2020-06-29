@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import WeatherCard from "./WeatherCard.component";
 
 function WeatherBox() {
   const [cityName, setCityName] = useState("");
@@ -40,8 +40,8 @@ function WeatherBox() {
   return (
     <div>
       <Container className="border mt-3">
-        <Row className="justify-content-center">
-          <h3>Welcome to The WeatherBox</h3>
+        <Row className="justify-content-center mt-3">
+          <h3>Welcome to The WeatherBox!</h3>
         </Row>
         <Row>
           <InputGroup className="m-5">
@@ -63,25 +63,7 @@ function WeatherBox() {
             </InputGroup.Append>
           </InputGroup>
         </Row>
-        {cityData.name && (
-          <Row className="justify-content-center">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src="https://images.unsplash.com/photo-1534794048419-48e110dca88e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=948&q=80"
-              />
-              <Card.Body>
-                <Card.Title>{cityData.name}</Card.Title>
-                <Card.Text>
-                  <strong>Temperature:</strong> {cityData.temperature}°F
-                  <br />
-                  <strong>Humidity:</strong> {cityData.humidity}%
-                </Card.Text>
-                <Button variant="primary">Save</Button>
-              </Card.Body>
-            </Card>
-          </Row>
-        )}
+        {cityData.name && <WeatherCard cityData={cityData} />}
       </Container>
     </div>
   );
