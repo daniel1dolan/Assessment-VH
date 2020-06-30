@@ -17,6 +17,13 @@ export default function SavedSearches() {
       setIsLoading(false);
     });
   }, []);
+  const deleteSearch = async (id) => {
+    API.delete("/", {
+      data: { id: id },
+    }).then((res) => {
+      setSavedSearches(res.data.savedWeather);
+    });
+  };
   return (
     <>
       <Container>
@@ -29,6 +36,7 @@ export default function SavedSearches() {
                   key={index}
                   cityData={weatherData}
                   delButton={true}
+                  deleteSearch={deleteSearch}
                 />
               );
             })}

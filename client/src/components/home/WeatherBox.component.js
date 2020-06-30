@@ -18,7 +18,6 @@ function WeatherBox() {
 
   const handleChange = (event) => {
     setCityName(event.target.value);
-    console.log(cityName);
   };
 
   const searchCity = async () => {

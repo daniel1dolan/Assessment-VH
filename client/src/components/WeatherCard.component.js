@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import ToastMessage from "./home/ToastMessage.component";
 
 import API from "../api";
 
 function WeatherCard(props) {
   const { name, temperature, humidity, date } = props.cityData;
+  const [openAlert, changeAlert] = useState(false);
   const delButton = props.delButton;
   let id;
+  let deleteSearch;
   if (delButton) {
     id = props.cityData.id;
+    deleteSearch = () => {
+      props.deleteSearch(id);
+    };
   }
   const saveSearch = async () => {
     API.post("/", {
@@ -20,13 +26,7 @@ function WeatherCard(props) {
       date: date,
     }).then((res) => {
       console.log(res);
-    });
-  };
-  const deleteSearch = async () => {
-    API.delete("/", {
-      data: { id: id },
-    }).then((res) => {
-      console.log(res);
+      changeAlert(true);
     });
   };
   return (
@@ -37,6 +37,7 @@ function WeatherCard(props) {
           src="https://images.unsplash.com/photo-1534794048419-48e110dca88e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=948&q=80"
         />
         <Card.Body>
+          {openAlert && <ToastMessage />}
           <Card.Title>{name}</Card.Title>
           <Card.Text>
             <strong>Temperature:</strong> {temperature}°F
