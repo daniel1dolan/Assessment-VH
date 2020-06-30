@@ -1,3 +1,5 @@
 # createdb WeatherApp
 
-knex migrate:make weather
+# knex migrate:make weather
+
+# knew migrate:latest

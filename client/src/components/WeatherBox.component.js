@@ -29,6 +29,7 @@ function WeatherBox() {
     console.log(json);
     const d = Date();
     const F = json.main.temp * (9 / 5) - 459.67;
+    console.log(d.toString());
     setCityData({
       name: json.name,
       temperature: F.toFixed(0),

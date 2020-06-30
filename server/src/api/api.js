@@ -1,11 +1,30 @@
 import express from "express";
+import db from "../../data/db";
 
 const api = express();
+// db("weather")
+//   .insert({
+//     name: "Houston",
+//     temperature: 60,
+//     humidity: 50,
+//     date: "Jun 30 2020",
+//   })
+//   .then((result) => {
+//     console.log(result, "");
+//   })
+//   .catch((e) => {
+//     console.log(e);
+//   });
+// db("weather")
+//   .where({ id: "1" })
+//   .del()
+//   .then((res) => {
+//     console.log(res);
+//   });
 
-api.get("/", (req, res) => {
-  res.send({
-    message: "hello from the API",
-  });
+api.get("/", async (req, res) => {
+  const savedWeather = await db("weather");
+  res.json({ savedWeather });
 });
 
 api.post("/", (req, res) => {
