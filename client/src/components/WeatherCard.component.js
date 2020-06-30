@@ -3,11 +3,34 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+import API from "../api";
+
 function WeatherCard(props) {
-  const { name, temperature, humidity } = props.cityData;
-  const saveSearch = () => {};
+  const { name, temperature, humidity, date } = props.cityData;
+  const delButton = props.delButton;
+  let id;
+  if (delButton) {
+    id = props.cityData.id;
+  }
+  const saveSearch = async () => {
+    API.post("/", {
+      name: name,
+      temperature: temperature,
+      humidity: humidity,
+      date: date,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+  const deleteSearch = async () => {
+    API.delete("/", {
+      data: { id: id },
+    }).then((res) => {
+      console.log(res);
+    });
+  };
   return (
-    <Row className="justify-content-center mb-3">
+    <Row className="justify-content-center m-2">
       <Card style={{ width: "18rem" }}>
         <Card.Img
           variant="top"
@@ -20,7 +43,15 @@ function WeatherCard(props) {
             <br />
             <strong>Humidity:</strong> {humidity}%
           </Card.Text>
-          <Button variant="primary">Save</Button>
+          {delButton ? (
+            <Button variant="primary" onClick={deleteSearch}>
+              Delete
+            </Button>
+          ) : (
+            <Button variant="primary" onClick={saveSearch}>
+              Save
+            </Button>
+          )}
         </Card.Body>
       </Card>
     </Row>

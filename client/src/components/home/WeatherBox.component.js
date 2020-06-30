@@ -13,7 +13,7 @@ function WeatherBox() {
     name: "",
     temperature: 0,
     humidity: 0,
-    time: "",
+    date: "",
   });
 
   const handleChange = (event) => {
@@ -27,14 +27,25 @@ function WeatherBox() {
     );
     const json = await response.json();
     console.log(json);
-    const d = Date();
+    const d = new Date();
+    const today =
+      d.getFullYear() +
+      "-" +
+      (d.getMonth() + 1) +
+      "-" +
+      d.getDate() +
+      " " +
+      d.getHours() +
+      ":" +
+      d.getMinutes() +
+      ":" +
+      d.getSeconds();
     const F = json.main.temp * (9 / 5) - 459.67;
-    console.log(d.toString());
     setCityData({
       name: json.name,
       temperature: F.toFixed(0),
       humidity: json.main.humidity,
-      time: d.toString(),
+      date: today,
     });
   };
 
@@ -64,7 +75,7 @@ function WeatherBox() {
             </InputGroup.Append>
           </InputGroup>
         </Row>
-        {cityData.name && <WeatherCard cityData={cityData} />}
+        {cityData.name && <WeatherCard cityData={cityData} delButton={false} />}
       </Container>
     </div>
   );

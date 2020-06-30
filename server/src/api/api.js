@@ -27,16 +27,32 @@ api.get("/", async (req, res) => {
   res.json({ savedWeather });
 });
 
-api.post("/", (req, res) => {
-  res.send({
-    message: "post recieved",
-  });
+api.post("/", async (req, res) => {
+  const { name, temperature, humidity, date } = req.body;
+  try {
+    const result = await db("weather").insert({
+      name,
+      temperature,
+      humidity,
+      date,
+    });
+    res.json({ result });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
-api.delete("/", (req, res) => {
-  res.send({
-    message: "delete recieved",
-  });
+api.delete("/", async (req, res) => {
+  console.log(req.body);
+  const { id } = req.body;
+  try {
+    const result = await db("weather").where("id", id).del();
+    console.log(result);
+    const savedWeather = await db("weather");
+    res.json({ savedWeather });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 export default api;
