@@ -19,7 +19,7 @@ function WeatherCard(props) {
     };
   }
   const saveSearch = async () => {
-    API.post("/", {
+    API.post("/api/", {
       name: name,
       temperature: temperature,
       humidity: humidity,

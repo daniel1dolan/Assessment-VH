@@ -11,14 +11,14 @@ export default function SavedSearches() {
   const [isLoading, setIsLoading] = useState(true);
   const [savedSearches, setSavedSearches] = useState([]);
   useEffect(() => {
-    API.get("/").then((res) => {
+    API.get("/api/").then((res) => {
       console.log(res);
       setSavedSearches(res.data.savedWeather);
       setIsLoading(false);
     });
   }, []);
   const deleteSearch = async (id) => {
-    API.delete("/", {
+    API.delete("/api/", {
       data: { id: id },
     }).then((res) => {
       setSavedSearches(res.data.savedWeather);
