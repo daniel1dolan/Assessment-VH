@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 
 function WeatherCard(props) {
   const { name, temperature, humidity } = props.cityData;
-  console.log(name);
+  const saveSearch = () => {};
   return (
     <Row className="justify-content-center mb-3">
       <Card style={{ width: "18rem" }}>

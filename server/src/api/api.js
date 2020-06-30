@@ -16,7 +16,7 @@ const api = express();
 //     console.log(e);
 //   });
 // db("weather")
-//   .where({ id: "1" })
+//   .where({ id: "2" })
 //   .del()
 //   .then((res) => {
 //     console.log(res);
