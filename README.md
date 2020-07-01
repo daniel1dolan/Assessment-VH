@@ -15,7 +15,7 @@ and stored in the DB. You can make your own github repos for these.
 
 The web app lets you search weather info based on a city and save searches to a database using node and knex. All data is fetched from the server (including data from OpenWeather to protect API key) for security purposes. I have left the .env for the server, so it can be run from a local machine.
 
-1. Git clone the repository. git@github.com:daniel1dolan/Assessment-VH.git
+1. Git clone the repository. [git@github.com:daniel1dolan/Assessment-VH.git](git@github.com:daniel1dolan/Assessment-VH.git). Then cd into the repository.
 2. Run: `npm run getDependencies`
 3. Run: `npm run setupDB` to get a database on your local machine and run migrations.
 4. Run: `npm run runApp`
