@@ -18,11 +18,14 @@ export default function SavedSearches() {
     });
   }, []);
   const deleteSearch = async (id) => {
-    API.delete("/api/", {
-      data: { id: id },
-    }).then((res) => {
-      setSavedSearches(res.data.savedWeather);
-    });
+    try {
+      let result = await API.delete("/api/", {
+        data: { id: id },
+      });
+      setSavedSearches(result.data.savedWeather);
+    } catch (error) {
+      throw new Error("Could not delete saved Search.");
+    }
   };
   return (
     <>

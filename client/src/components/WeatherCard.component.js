@@ -19,15 +19,18 @@ function WeatherCard(props) {
     };
   }
   const saveSearch = async () => {
-    API.post("/api/", {
-      name: name,
-      temperature: temperature,
-      humidity: humidity,
-      date: date,
-    }).then((res) => {
+    try {
+      const res = await API.post("/api/", {
+        name: name,
+        temperature: temperature,
+        humidity: humidity,
+        date: date,
+      });
       console.log(res);
       changeAlert(true);
-    });
+    } catch (error) {
+      throw new Error("Could not save search.");
+    }
   };
   return (
     <Row className="justify-content-center m-2">

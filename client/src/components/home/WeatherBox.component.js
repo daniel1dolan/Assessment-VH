@@ -25,31 +25,35 @@ function WeatherBox() {
 
   const searchCity = async () => {
     setIsLoading(true);
-    const response = await API.post("/openweather/", {
-      cityName: cityName,
-    });
-    console.log(response.data);
-    const d = new Date();
-    const today =
-      d.getFullYear() +
-      "-" +
-      (d.getMonth() + 1) +
-      "-" +
-      d.getDate() +
-      " " +
-      d.getHours() +
-      ":" +
-      d.getMinutes() +
-      ":" +
-      d.getSeconds();
-    const F = response.data.main.temp * (9 / 5) - 459.67;
-    setIsLoading(false);
-    setCityData({
-      name: response.data.name,
-      temperature: F.toFixed(0),
-      humidity: response.data.main.humidity,
-      date: today,
-    });
+    try {
+      const response = await API.post("/openweather/", {
+        cityName: cityName,
+      });
+      console.log(response.data);
+      const d = new Date();
+      const today =
+        d.getFullYear() +
+        "-" +
+        (d.getMonth() + 1) +
+        "-" +
+        d.getDate() +
+        " " +
+        d.getHours() +
+        ":" +
+        d.getMinutes() +
+        ":" +
+        d.getSeconds();
+      const F = response.data.main.temp * (9 / 5) - 459.67;
+      setIsLoading(false);
+      setCityData({
+        name: response.data.name,
+        temperature: F.toFixed(0),
+        humidity: response.data.main.humidity,
+        date: today,
+      });
+    } catch (error) {
+      throw new Error("Unable to get Weather Data.");
+    }
   };
 
   return (
@@ -70,6 +74,7 @@ function WeatherBox() {
               aria-label="Ex. - Houston"
               aria-describedby="basic-addon2"
               onChange={handleChange}
+              required
             />
             <InputGroup.Append>
               <Button variant="primary" onClick={searchCity}>
