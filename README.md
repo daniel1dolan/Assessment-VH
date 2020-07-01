@@ -10,3 +10,15 @@ and stored in the DB. You can make your own github repos for these.
 5. user should see main.temp and main.humidity
 6. If user clicks save button, server/db should save city name, temp, humidity, and time in db
 7. User should be able to view/delete saved searches
+
+### How to run locally
+
+The web app lets you search weather data based on a city, and it allows you to save searches to a database using node and knex. All data is fetched from the server (including data from OpenWeather to protect API key) for security purposes. I have left the .env for the server, so it can be run from a local machine.
+
+1. Git clone the repository. git@github.com:daniel1dolan/Assessment-VH.git
+2. Run: npm run getDependencies.
+3. Run: npm run setupDB to get a database on your local machine and run migrations.
+4. Run: npm run runApp.
+5. React-app should pull up localhost:3000 to view the application, and the application should be up and running.
+
+Possible issue: may run into issue if you have a database called WeatherApp on your local machine.

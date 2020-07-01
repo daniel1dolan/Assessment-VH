@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "getDependencies": "((cd server && bash dbSetup.bash) && (cd server && npm install)) & (cd client && npm install)",
+    "getDependencies": "(cd server && npm install) & (cd client && npm install)",
+    "setupDB": "(cd server && bash dbSetup.bash)",
     "runApp": "(cd server && npm start) & (cd client && npm start)"
   },
   "repository": {
