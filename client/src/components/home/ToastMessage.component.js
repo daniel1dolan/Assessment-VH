@@ -6,7 +6,7 @@ import "../../styles/main.css";
 export default function ToastMessage() {
   return (
     <>
-      <Alert className="alertAnimation" variant="primary" dismissable>
+      <Alert className="alertAnimation" variant="primary">
         Weather Info Saved.
       </Alert>
     </>

@@ -1,0 +1,21 @@
+{
+  "name": "assessment",
+  "version": "1.0.0",
+  "description": "Create a web app using react, node, express, knex.js, and postgresql. App should take city name as input and display the results to user. User should be presented a save button, and if they click it, certain results should be sent to the server and stored in the DB. You can make your own github repos for these.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "getDependencies": "((cd server && bash dbSetup.bash) && (cd server && npm install)) & (cd client && npm install)",
+    "runApp": "(cd server && npm start) & (cd client && npm start)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniel1dolan/Assessment-VH.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniel1dolan/Assessment-VH/issues"
+  },
+  "homepage": "https://github.com/daniel1dolan/Assessment-VH#readme"
+}

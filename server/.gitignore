@@ -1,1 +1,2 @@
-.env
+# .env would be gitignored in production to protect api key
+# .env

@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 import WeatherCard from "../WeatherCard.component";
 
 import API from "../../api";
@@ -16,12 +17,14 @@ function WeatherBox() {
     humidity: 0,
     date: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (event) => {
     setCityName(event.target.value);
   };
 
   const searchCity = async () => {
+    setIsLoading(true);
     const response = await API.post("/openweather/", {
       cityName: cityName,
     });
@@ -40,6 +43,7 @@ function WeatherBox() {
       ":" +
       d.getSeconds();
     const F = response.data.main.temp * (9 / 5) - 459.67;
+    setIsLoading(false);
     setCityData({
       name: response.data.name,
       temperature: F.toFixed(0),
@@ -74,6 +78,11 @@ function WeatherBox() {
             </InputGroup.Append>
           </InputGroup>
         </Row>
+        {isLoading && (
+          <Row className="justify-content-center m-3">
+            <Spinner animation="grow" />
+          </Row>
+        )}
         {cityData.name && <WeatherCard cityData={cityData} delButton={false} />}
       </Container>
     </div>
